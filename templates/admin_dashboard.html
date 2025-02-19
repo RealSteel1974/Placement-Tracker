@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Admin Dashboard</h1>
+
+        <!-- Add Placement Data Form -->
+        <h3>Add Placement Data</h3>
+        <form method="POST" action="/admin/add">
+            <div class="form-group">
+                <label for="batch">Batch</label>
+                <input type="text" class="form-control" id="batch" name="Batch" required>
+            </div>
+            <div class="form-group">
+                <label for="karad_dac">Karad DAC</label>
+                <input type="number" class="form-control" id="karad_dac" name="KaradDac" required>
+            </div>
+            <div class="form-group">
+                <label for="dac">DAC</label>
+                <input type="number" class="form-control" id="dac" name="DAC" required>
+            </div>
+            <div class="form-group">
+                <label for="dmc">DMC</label>
+                <input type="number" class="form-control" id="dmc" name="DMC" required>
+            </div>
+            <div class="form-group">
+                <label for="desd">DESD</label>
+                <input type="number" class="form-control" id="desd" name="DESD" required>
+            </div>
+            <div class="form-group">
+                <label for="dbda">DBDA</label>
+                <input type="number" class="form-control" id="dbda" name="DBDA" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Record</button>
+        </form>
+
+        <hr>
+
+        <!-- Existing Placement Data Table -->
+        <h3 class="my-4">Manage Placement Data</h3>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Batch</th>
+                    <th>Karad DAC</th>
+                    <th>DAC</th>
+                    <th>DMC</th>
+                    <th>DESD</th>
+                    <th>DBDA</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in data %}
+                <tr>
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.Batch }}</td>
+                    <td>{{ record.KaradDac }}</td>
+                    <td>{{ record.DAC }}</td>
+                    <td>{{ record.DMC }}</td>
+                    <td>{{ record.DESD }}</td>
+                    <td>{{ record.DBDA }}</td>
+                    <td>
+                        <!-- Update and Delete Actions -->
+                        <a href="/admin/update_form/{{ record.id }}" class="btn btn-sm btn-warning">Edit</a>
+                        <form method="POST" action="/admin/delete/{{ record.id }}" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this record?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Logout Button -->
+        <div class="text-center">
+            <a href="/admin/logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, jQuery, and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Placement Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Update Placement Record</h1>
+        <form method="POST" action="{{ url_for('admin_update', id=record.id) }}">
+            <div class="form-group">
+                <label for="batch">Batch</label>
+                <input type="text" class="form-control" id="batch" name="Batch" value="{{ record.Batch }}" required>
+            </div>
+            <div class="form-group">
+                <label for="karad_dac">Karad DAC</label>
+                <input type="number" class="form-control" id="karad_dac" name="KaradDac" value="{{ record.KaradDac }}" required>
+            </div>
+            <div class="form-group">
+                <label for="dac">DAC</label>
+                <input type="number" class="form-control" id="dac" name="DAC" value="{{ record.DAC }}" required>
+            </div>
+            <div class="form-group">
+                <label for="dmc">DMC</label>
+                <input type="number" class="form-control" id="dmc" name="DMC" value="{{ record.DMC }}" required>
+            </div>
+            <div class="form-group">
+                <label for="desd">DESD</label>
+                <input type="number" class="form-control" id="desd" name="DESD" value="{{ record.DESD }}" required>
+            </div>
+            <div class="form-group">
+                <label for="dbda">DBDA</label>
+                <input type="number" class="form-control" id="dbda" name="DBDA" value="{{ record.DBDA }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Record</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
